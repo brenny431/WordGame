@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "61937221503",
+    "project_id": "quran-4821c",
+    "storage_bucket": "quran-4821c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61937221503:android:042d7f3e514abfa398244a",
+        "android_client_info": {
+          "package_name": "com.example.wordspro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "61937221503-pnktk03b3uss0v11kiai5ku7vocvb98m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArJIKEvP393tP9_d5PdvTf59FGM1qAWXE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "61937221503-pnktk03b3uss0v11kiai5ku7vocvb98m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
