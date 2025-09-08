@@ -1,16 +1,13 @@
-# wordspro
+# Word Game
 
-A new Flutter project.
+A new flutter project aimed at expanding on the popular "worddle" format of game. We want to step beyond the norm and build a game with more meaning and interaction. 
 
-## Getting Started
+Planned features:
+- Custom dictionaries: Play levels specific to a dictionary type, wether this be crypto related terms or brainrot related items. There will be custom levels for everyone.
+- Skips/Hints: Get out of tight spots with the help of a hint or skip the level entirely.
+- Custom themes: Customize the app your own way, with planned theme pickers and limited time themes planned.
+- New game modes
+- Different game types
+- Leaderboards and so much more!
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Stick around to see how we progress. Game will be available on Google Play by end of December 2025 (We hope)
