@@ -41,13 +41,12 @@ class _GamePageState extends State<GamePage> {
   }
 
   @override
-  Widget build(BuildContext context) => RawKeyboardListener(
+  Widget build(BuildContext context) => KeyboardListener(
         autofocus: true,
         focusNode: _focusNode,
-        onKey: (event) {
-          if (event is RawKeyDownEvent) {
+        onKeyEvent: (KeyEvent event) {
+          if (event is KeyDownEvent) {
             context.read<GameBloc>().add(GameEvent.keyListen(event));
-            return;
           }
         },
         child: BlocListener<GameBloc, GameState>(
@@ -65,6 +64,7 @@ class _GamePageState extends State<GamePage> {
                 ),
               );
             }
+
             late bool daily;
             final gameResult = state.mapOrNull(
               complete: (s) {
@@ -72,6 +72,7 @@ class _GamePageState extends State<GamePage> {
                 return s.result;
               },
             );
+
             if (gameResult != null) {
               showGameResultDialog(
                 context,
@@ -83,6 +84,7 @@ class _GamePageState extends State<GamePage> {
           child: Scaffold(
             drawer: const CustomDrawer(),
             appBar: CustomAppBar(
+              key: UniqueKey(), // optional key added
               title: widget.isDailyMode
                   ? context.r.daily
                   : context.r.level_number(
@@ -103,7 +105,7 @@ class _GamePageState extends State<GamePage> {
                   ),
               ],
             ),
-            body: const _GameBody(),
+            body: _GameBody(key: UniqueKey()), // added key, removed const
           ),
         ),
       );
@@ -148,7 +150,6 @@ class _GamePageState extends State<GamePage> {
 }
 
 class _GameBody extends StatelessWidget {
-  // ignore: unused_element
   const _GameBody({super.key});
 
   @override

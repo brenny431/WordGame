@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wordspro/resources/colors.dart';
 
-final _base = ThemeData.dark(useMaterial3: true);
-
-final darkTheme = _base.copyWith(
-  useMaterial3: true,
+final darkTheme = ThemeData.from(
+  colorScheme: const ColorScheme.dark(
+    primary: AppColors.dark,
+    secondary: AppColors.light,
+    surface: AppColors.dark, // instead of background
+  ),
+  textTheme: GoogleFonts.ubuntuTextTheme(),
+).copyWith(
   scaffoldBackgroundColor: AppColors.dark,
-  textTheme: GoogleFonts.ubuntuTextTheme(_base.textTheme).copyWith(
+  textTheme: GoogleFonts.ubuntuTextTheme().copyWith(
     titleLarge: const TextStyle(
       fontSize: 24,
       fontWeight: FontWeight.w700,
@@ -31,15 +35,12 @@ final darkTheme = _base.copyWith(
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
-      padding: MaterialStateProperty.all(
-        const EdgeInsets.symmetric(
-          vertical: 12,
-          horizontal: 48,
-        ),
+      padding: WidgetStateProperty.all(
+        const EdgeInsets.symmetric(vertical: 12, horizontal: 48),
       ),
-      elevation: MaterialStateProperty.all(0),
-      foregroundColor: MaterialStateProperty.all(AppColors.dark),
-      backgroundColor: MaterialStateProperty.all(AppColors.light),
+      elevation: WidgetStateProperty.all(0),
+      foregroundColor: WidgetStateProperty.all(AppColors.dark),
+      backgroundColor: WidgetStateProperty.all(AppColors.light),
     ),
   ),
   textSelectionTheme: const TextSelectionThemeData(

@@ -19,7 +19,7 @@ mixin _$GameEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(KeyboardKeys letter) letterPressed,
-    required TResult Function(RawKeyDownEvent keyDown) keyListen,
+    required TResult Function(KeyEvent keyDown) keyListen,
     required TResult Function() deletePressed,
     required TResult Function() deleteLongPressed,
     required TResult Function() enterPressed,
@@ -31,7 +31,7 @@ mixin _$GameEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(KeyboardKeys letter)? letterPressed,
-    TResult? Function(RawKeyDownEvent keyDown)? keyListen,
+    TResult? Function(KeyEvent keyDown)? keyListen,
     TResult? Function()? deletePressed,
     TResult? Function()? deleteLongPressed,
     TResult? Function()? enterPressed,
@@ -43,7 +43,7 @@ mixin _$GameEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(KeyboardKeys letter)? letterPressed,
-    TResult Function(RawKeyDownEvent keyDown)? keyListen,
+    TResult Function(KeyEvent keyDown)? keyListen,
     TResult Function()? deletePressed,
     TResult Function()? deleteLongPressed,
     TResult Function()? enterPressed,
@@ -184,7 +184,7 @@ class _$LetterPressedEventImpl extends _LetterPressedEvent
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(KeyboardKeys letter) letterPressed,
-    required TResult Function(RawKeyDownEvent keyDown) keyListen,
+    required TResult Function(KeyEvent keyDown) keyListen,
     required TResult Function() deletePressed,
     required TResult Function() deleteLongPressed,
     required TResult Function() enterPressed,
@@ -199,7 +199,7 @@ class _$LetterPressedEventImpl extends _LetterPressedEvent
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(KeyboardKeys letter)? letterPressed,
-    TResult? Function(RawKeyDownEvent keyDown)? keyListen,
+    TResult? Function(KeyEvent keyDown)? keyListen,
     TResult? Function()? deletePressed,
     TResult? Function()? deleteLongPressed,
     TResult? Function()? enterPressed,
@@ -214,7 +214,7 @@ class _$LetterPressedEventImpl extends _LetterPressedEvent
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(KeyboardKeys letter)? letterPressed,
-    TResult Function(RawKeyDownEvent keyDown)? keyListen,
+    TResult Function(KeyEvent keyDown)? keyListen,
     TResult Function()? deletePressed,
     TResult Function()? deleteLongPressed,
     TResult Function()? enterPressed,
@@ -296,7 +296,7 @@ abstract class _$$KeyListenEventImplCopyWith<$Res> {
           $Res Function(_$KeyListenEventImpl) then) =
       __$$KeyListenEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({RawKeyDownEvent keyDown});
+  $Res call({KeyEvent keyDown});
 }
 
 /// @nodoc
@@ -316,7 +316,7 @@ class __$$KeyListenEventImplCopyWithImpl<$Res>
       null == keyDown
           ? _value.keyDown
           : keyDown // ignore: cast_nullable_to_non_nullable
-              as RawKeyDownEvent,
+              as KeyEvent,
     ));
   }
 }
@@ -328,7 +328,7 @@ class _$KeyListenEventImpl extends _KeyListenEvent
   const _$KeyListenEventImpl(this.keyDown) : super._();
 
   @override
-  final RawKeyDownEvent keyDown;
+  final KeyEvent keyDown;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -365,7 +365,7 @@ class _$KeyListenEventImpl extends _KeyListenEvent
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(KeyboardKeys letter) letterPressed,
-    required TResult Function(RawKeyDownEvent keyDown) keyListen,
+    required TResult Function(KeyEvent keyDown) keyListen,
     required TResult Function() deletePressed,
     required TResult Function() deleteLongPressed,
     required TResult Function() enterPressed,
@@ -380,7 +380,7 @@ class _$KeyListenEventImpl extends _KeyListenEvent
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(KeyboardKeys letter)? letterPressed,
-    TResult? Function(RawKeyDownEvent keyDown)? keyListen,
+    TResult? Function(KeyEvent keyDown)? keyListen,
     TResult? Function()? deletePressed,
     TResult? Function()? deleteLongPressed,
     TResult? Function()? enterPressed,
@@ -395,7 +395,7 @@ class _$KeyListenEventImpl extends _KeyListenEvent
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(KeyboardKeys letter)? letterPressed,
-    TResult Function(RawKeyDownEvent keyDown)? keyListen,
+    TResult Function(KeyEvent keyDown)? keyListen,
     TResult Function()? deletePressed,
     TResult Function()? deleteLongPressed,
     TResult Function()? enterPressed,
@@ -461,11 +461,10 @@ class _$KeyListenEventImpl extends _KeyListenEvent
 }
 
 abstract class _KeyListenEvent extends GameEvent {
-  const factory _KeyListenEvent(final RawKeyDownEvent keyDown) =
-      _$KeyListenEventImpl;
+  const factory _KeyListenEvent(final KeyEvent keyDown) = _$KeyListenEventImpl;
   const _KeyListenEvent._() : super._();
 
-  RawKeyDownEvent get keyDown;
+  KeyEvent get keyDown;
   @JsonKey(ignore: true)
   _$$KeyListenEventImplCopyWith<_$KeyListenEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -517,7 +516,7 @@ class _$DeletePressedEventImpl extends _DeletePressedEvent
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(KeyboardKeys letter) letterPressed,
-    required TResult Function(RawKeyDownEvent keyDown) keyListen,
+    required TResult Function(KeyEvent keyDown) keyListen,
     required TResult Function() deletePressed,
     required TResult Function() deleteLongPressed,
     required TResult Function() enterPressed,
@@ -532,7 +531,7 @@ class _$DeletePressedEventImpl extends _DeletePressedEvent
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(KeyboardKeys letter)? letterPressed,
-    TResult? Function(RawKeyDownEvent keyDown)? keyListen,
+    TResult? Function(KeyEvent keyDown)? keyListen,
     TResult? Function()? deletePressed,
     TResult? Function()? deleteLongPressed,
     TResult? Function()? enterPressed,
@@ -547,7 +546,7 @@ class _$DeletePressedEventImpl extends _DeletePressedEvent
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(KeyboardKeys letter)? letterPressed,
-    TResult Function(RawKeyDownEvent keyDown)? keyListen,
+    TResult Function(KeyEvent keyDown)? keyListen,
     TResult Function()? deletePressed,
     TResult Function()? deleteLongPressed,
     TResult Function()? enterPressed,
@@ -666,7 +665,7 @@ class _$DeleteLongPressedEventImpl extends _DeleteLongPressedEvent
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(KeyboardKeys letter) letterPressed,
-    required TResult Function(RawKeyDownEvent keyDown) keyListen,
+    required TResult Function(KeyEvent keyDown) keyListen,
     required TResult Function() deletePressed,
     required TResult Function() deleteLongPressed,
     required TResult Function() enterPressed,
@@ -681,7 +680,7 @@ class _$DeleteLongPressedEventImpl extends _DeleteLongPressedEvent
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(KeyboardKeys letter)? letterPressed,
-    TResult? Function(RawKeyDownEvent keyDown)? keyListen,
+    TResult? Function(KeyEvent keyDown)? keyListen,
     TResult? Function()? deletePressed,
     TResult? Function()? deleteLongPressed,
     TResult? Function()? enterPressed,
@@ -696,7 +695,7 @@ class _$DeleteLongPressedEventImpl extends _DeleteLongPressedEvent
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(KeyboardKeys letter)? letterPressed,
-    TResult Function(RawKeyDownEvent keyDown)? keyListen,
+    TResult Function(KeyEvent keyDown)? keyListen,
     TResult Function()? deletePressed,
     TResult Function()? deleteLongPressed,
     TResult Function()? enterPressed,
@@ -812,7 +811,7 @@ class _$EnterPressedEventImpl extends _EnterPressedEvent
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(KeyboardKeys letter) letterPressed,
-    required TResult Function(RawKeyDownEvent keyDown) keyListen,
+    required TResult Function(KeyEvent keyDown) keyListen,
     required TResult Function() deletePressed,
     required TResult Function() deleteLongPressed,
     required TResult Function() enterPressed,
@@ -827,7 +826,7 @@ class _$EnterPressedEventImpl extends _EnterPressedEvent
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(KeyboardKeys letter)? letterPressed,
-    TResult? Function(RawKeyDownEvent keyDown)? keyListen,
+    TResult? Function(KeyEvent keyDown)? keyListen,
     TResult? Function()? deletePressed,
     TResult? Function()? deleteLongPressed,
     TResult? Function()? enterPressed,
@@ -842,7 +841,7 @@ class _$EnterPressedEventImpl extends _EnterPressedEvent
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(KeyboardKeys letter)? letterPressed,
-    TResult Function(RawKeyDownEvent keyDown)? keyListen,
+    TResult Function(KeyEvent keyDown)? keyListen,
     TResult Function()? deletePressed,
     TResult Function()? deleteLongPressed,
     TResult Function()? enterPressed,
@@ -997,7 +996,7 @@ class _$LoadGameEventImpl extends _LoadGameEvent with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(KeyboardKeys letter) letterPressed,
-    required TResult Function(RawKeyDownEvent keyDown) keyListen,
+    required TResult Function(KeyEvent keyDown) keyListen,
     required TResult Function() deletePressed,
     required TResult Function() deleteLongPressed,
     required TResult Function() enterPressed,
@@ -1012,7 +1011,7 @@ class _$LoadGameEventImpl extends _LoadGameEvent with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(KeyboardKeys letter)? letterPressed,
-    TResult? Function(RawKeyDownEvent keyDown)? keyListen,
+    TResult? Function(KeyEvent keyDown)? keyListen,
     TResult? Function()? deletePressed,
     TResult? Function()? deleteLongPressed,
     TResult? Function()? enterPressed,
@@ -1027,7 +1026,7 @@ class _$LoadGameEventImpl extends _LoadGameEvent with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(KeyboardKeys letter)? letterPressed,
-    TResult Function(RawKeyDownEvent keyDown)? keyListen,
+    TResult Function(KeyEvent keyDown)? keyListen,
     TResult Function()? deletePressed,
     TResult Function()? deleteLongPressed,
     TResult Function()? enterPressed,
@@ -1178,7 +1177,7 @@ class _$ShareEventImpl extends _ShareEvent with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(KeyboardKeys letter) letterPressed,
-    required TResult Function(RawKeyDownEvent keyDown) keyListen,
+    required TResult Function(KeyEvent keyDown) keyListen,
     required TResult Function() deletePressed,
     required TResult Function() deleteLongPressed,
     required TResult Function() enterPressed,
@@ -1193,7 +1192,7 @@ class _$ShareEventImpl extends _ShareEvent with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(KeyboardKeys letter)? letterPressed,
-    TResult? Function(RawKeyDownEvent keyDown)? keyListen,
+    TResult? Function(KeyEvent keyDown)? keyListen,
     TResult? Function()? deletePressed,
     TResult? Function()? deleteLongPressed,
     TResult? Function()? enterPressed,
@@ -1208,7 +1207,7 @@ class _$ShareEventImpl extends _ShareEvent with DiagnosticableTreeMixin {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(KeyboardKeys letter)? letterPressed,
-    TResult Function(RawKeyDownEvent keyDown)? keyListen,
+    TResult Function(KeyEvent keyDown)? keyListen,
     TResult Function()? deletePressed,
     TResult Function()? deleteLongPressed,
     TResult Function()? enterPressed,
@@ -1361,7 +1360,7 @@ class _$ChangeDictionaryEventImpl extends _ChangeDictionaryEvent
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(KeyboardKeys letter) letterPressed,
-    required TResult Function(RawKeyDownEvent keyDown) keyListen,
+    required TResult Function(KeyEvent keyDown) keyListen,
     required TResult Function() deletePressed,
     required TResult Function() deleteLongPressed,
     required TResult Function() enterPressed,
@@ -1376,7 +1375,7 @@ class _$ChangeDictionaryEventImpl extends _ChangeDictionaryEvent
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(KeyboardKeys letter)? letterPressed,
-    TResult? Function(RawKeyDownEvent keyDown)? keyListen,
+    TResult? Function(KeyEvent keyDown)? keyListen,
     TResult? Function()? deletePressed,
     TResult? Function()? deleteLongPressed,
     TResult? Function()? enterPressed,
@@ -1391,7 +1390,7 @@ class _$ChangeDictionaryEventImpl extends _ChangeDictionaryEvent
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(KeyboardKeys letter)? letterPressed,
-    TResult Function(RawKeyDownEvent keyDown)? keyListen,
+    TResult Function(KeyEvent keyDown)? keyListen,
     TResult Function()? deletePressed,
     TResult Function()? deleteLongPressed,
     TResult Function()? enterPressed,
