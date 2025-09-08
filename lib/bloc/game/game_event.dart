@@ -9,7 +9,7 @@ class GameEvent with _$GameEvent {
   const factory GameEvent.letterPressed(KeyboardKeys letter) =
       _LetterPressedEvent;
 
-  const factory GameEvent.keyListen(RawKeyDownEvent keyDown) = _KeyListenEvent;
+  const factory GameEvent.keyListen(KeyEvent keyDown) = _KeyListenEvent;
 
   const factory GameEvent.deletePressed() = _DeletePressedEvent;
 
