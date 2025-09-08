@@ -51,18 +51,26 @@ class GameBloc extends Bloc<GameEvent, GameState> {
     _KeyListenEvent event,
     Emitter<GameState> emit,
   ) {
-    if (event.keyDown.isKeyPressed(LogicalKeyboardKey.enter)) {
+    final keyPressed = event.keyDown.logicalKey;
+
+    // Check Enter
+    if (HardwareKeyboard.instance
+        .isLogicalKeyPressed(LogicalKeyboardKey.enter)) {
       add(const GameEvent.enterPressed());
       return;
     }
 
-    if (event.keyDown.isKeyPressed(LogicalKeyboardKey.delete) ||
-        event.keyDown.isKeyPressed(LogicalKeyboardKey.backspace)) {
+    // Check Delete/Backspace
+    if (HardwareKeyboard.instance
+            .isLogicalKeyPressed(LogicalKeyboardKey.delete) ||
+        HardwareKeyboard.instance
+            .isLogicalKeyPressed(LogicalKeyboardKey.backspace)) {
       add(const GameEvent.deletePressed());
       return;
     }
 
-    final letter = KeyboardKeys.fromLogicalKey(event.keyDown.logicalKey);
+    // Check Letter keys
+    final letter = KeyboardKeys.fromLogicalKey(keyPressed);
     if (letter != null) {
       add(GameEvent.letterPressed(letter));
       return;
@@ -73,9 +81,8 @@ class GameBloc extends Bloc<GameEvent, GameState> {
     _LetterPressedEvent event,
     Emitter<GameState> emit,
   ) {
-    if (_isGameComplete) {
-      return;
-    }
+    if (_isGameComplete) return;
+
     if (_gridInfo.length < (_currentWordIndex + 1) * 5) {
       final newList = List<LetterInfo>.of(_gridInfo)
         ..add(LetterInfo(letter: event.letter.fromDictionary(_dictionary)!));
@@ -88,9 +95,8 @@ class GameBloc extends Bloc<GameEvent, GameState> {
     _DeletePressedEvent event,
     Emitter<GameState> emit,
   ) {
-    if (_isGameComplete) {
-      return;
-    }
+    if (_isGameComplete) return;
+
     if (_gridInfo.length > _currentWordIndex * 5) {
       final newList = List<LetterInfo>.of(_gridInfo)..removeLast();
       _gridInfo = newList;
@@ -102,9 +108,8 @@ class GameBloc extends Bloc<GameEvent, GameState> {
     _DeleteLongPressedEvent event,
     Emitter<GameState> emit,
   ) {
-    if (_isGameComplete) {
-      return;
-    }
+    if (_isGameComplete) return;
+
     if (_gridInfo.length > _currentWordIndex * 5) {
       final newList = List<LetterInfo>.of(_gridInfo)
         ..removeRange(_currentWordIndex * 5, _gridInfo.length);
@@ -117,18 +122,20 @@ class GameBloc extends Bloc<GameEvent, GameState> {
     _EnterPressedEvent event,
     Emitter<GameState> emit,
   ) async {
-    if (_isGameComplete) {
-      return;
-    }
+    if (_isGameComplete) return;
+
     if (_gridInfo.isEmpty || _gridInfo.length % 5 != 0) {
       emit(const GameState.error(GameError.tooShort));
       return;
     }
+
     final word = _buildWord;
+
     if (!_dictionary.currentDictionary.containsKey(word)) {
       emit(const GameState.error(GameError.notFound));
       return;
     }
+
     // Win game
     if (word == _secretWord) {
       _gridInfo.replaceRange(
@@ -143,6 +150,7 @@ class GameBloc extends Bloc<GameEvent, GameState> {
         word: _secretWord,
         meaning: _dictionary.currentDictionary[_secretWord] ?? '',
       );
+
       await _saveResultAndBoard(gameResult);
       await _saveStatAndLvl(gameResult);
 
@@ -165,6 +173,7 @@ class GameBloc extends Bloc<GameEvent, GameState> {
         word: _secretWord,
         meaning: _dictionary.currentDictionary[_secretWord] ?? '',
       );
+
       await _saveResultAndBoard(gameResult);
       await _saveStatAndLvl(gameResult);
 
@@ -180,10 +189,12 @@ class GameBloc extends Bloc<GameEvent, GameState> {
         _gridInfo.length,
         _colorTheWord,
       );
+
       final gameResult = GameResult(
         word: _secretWord,
         meaning: _dictionary.currentDictionary[_secretWord] ?? '',
       );
+
       await _saveResultAndBoard(gameResult);
 
       emit(GameState.wordSubmit(board: _gridInfo, keyboard: _keyboardInfo));
@@ -201,17 +212,14 @@ class GameBloc extends Bloc<GameEvent, GameState> {
       _generateSecretWord();
       _gridInfo = await gameRepository.getDailyBoard(_dictionary) ?? [];
       _currentWordIndex = _gridInfo.length ~/ 5;
+
       final previousResult = await gameRepository.getDailyResult(_dictionary);
       if (previousResult != null && previousResult.word == _secretWord) {
         if (previousResult.isWin != null) {
           _isGameComplete = true;
           if (event.isFirst) {
-            emit(
-              GameState.complete(
-                result: previousResult,
-                isDaily: _isDailyMode,
-              ),
-            );
+            emit(GameState.complete(
+                result: previousResult, isDaily: _isDailyMode));
           }
         }
       } else {
@@ -326,12 +334,8 @@ class GameBloc extends Bloc<GameEvent, GameState> {
 
     for (final item in list) {
       final keyboardKey = item.letter.toKeyboardKeys;
-      if (keyboardKey == null) {
-        continue;
-      }
-      if (replaceKeyboardKey(keyboardKey, item)) {
-        continue;
-      }
+      if (keyboardKey == null) continue;
+      if (replaceKeyboardKey(keyboardKey, item)) continue;
       _keyboardInfo[keyboardKey] = item.letterStatus;
     }
   }
@@ -355,9 +359,7 @@ class GameBloc extends Bloc<GameEvent, GameState> {
       );
     }
 
-    // Color keyboard info only after 5 last items
     _colorKeyboard(updatedList);
-
     _currentWordIndex++;
     return updatedList;
   }

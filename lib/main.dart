@@ -13,7 +13,6 @@ import 'package:wordspro/bloc/locale/locale_bloc.dart';
 import 'package:wordspro/bloc/theme/theme_bloc.dart';
 import 'package:wordspro/data/repositories.dart';
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -21,13 +20,13 @@ Future<void> main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
   setPathUrlStrategy();
-
-
 
   runZonedGuarded<void>(
     () async {
       Bloc.observer = const AppBlocObserver();
+
       final ISaveGameRepository gameRepo = SaveGameRepository();
       final ISaveStatisticRepository statisticRepo = SaveStatisticRepository();
       final ISaveLevelsRepository levelsRepo = SaveLevelsRepository();
@@ -43,17 +42,13 @@ Future<void> main() async {
         MultiRepositoryProvider(
           providers: [
             RepositoryProvider<ISaveGameRepository>(
-              create: (context) => gameRepo,
-            ),
+                create: (context) => gameRepo),
             RepositoryProvider<ISaveStatisticRepository>(
-              create: (context) => statisticRepo,
-            ),
+                create: (context) => statisticRepo),
             RepositoryProvider<ISaveLevelsRepository>(
-              create: (context) => levelsRepo,
-            ),
+                create: (context) => levelsRepo),
             RepositoryProvider<ISaveSettingsRepository>(
-              create: (context) => settingsRepo,
-            ),
+                create: (context) => settingsRepo),
           ],
           child: MultiBlocProvider(
             providers: [
@@ -85,7 +80,8 @@ Future<void> main() async {
                 )..add(const GameEvent.loadGame()),
               ),
             ],
-            child: const App(),
+            child:
+                const App(startOnStartPage: true), // <-- Start page integration
           ),
         ),
       );
