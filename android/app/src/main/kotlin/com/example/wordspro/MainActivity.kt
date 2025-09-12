@@ -1,4 +1,4 @@
-package com.android.wordspro
+package com.example.wordspro
 
 import io.flutter.embedding.android.FlutterActivity
 
