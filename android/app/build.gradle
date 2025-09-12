@@ -2,7 +2,7 @@ plugins {
     id "com.android.application"
     id "org.jetbrains.kotlin.android"
     id "dev.flutter.flutter-gradle-plugin"
-    id "com.google.gms.google-services" // required for Firebase/AdMo
+    id "com.google.gms.google-services" // Firebase / AdMob
 }
 
 def localProperties = new Properties()
@@ -45,6 +45,9 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.debug // replace with real signing config for Play Store
+            // Optional: enable shrinking & obfuscation
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
@@ -54,6 +57,7 @@ flutter {
 }
 
 dependencies {
+    // Firebase/AdMob
     implementation platform("com.google.firebase:firebase-bom:33.1.2")
     implementation "com.google.android.gms:play-services-ads:23.1.0"
 }
