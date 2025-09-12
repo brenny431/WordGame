@@ -3,12 +3,12 @@ name: Flutter Build and Deploy
 on:
   push:
     branches:
-      - main
-      - develop
+      - master
+      - Develop
   pull_request:
     branches:
-      - main
-      - develop
+      - master
+      - Develop
 
 jobs:
   build_apk:
