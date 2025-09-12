@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wordspro/bloc/game/game_bloc.dart';
 import 'package:wordspro/bloc/theme/theme_bloc.dart';
 import 'package:wordspro/presentation/pages/game/game_page.dart';
-import 'package:wordspro/presentation/pages/levels/levels_page.dart';
 import 'package:wordspro/presentation/pages/settings/settings_page.dart';
 import 'package:wordspro/presentation/pages/credits/credits_page.dart';
 import 'package:wordspro/presentation/pages/tutorial/tutorial_page.dart';
+import 'package:wordspro/widgets/banner_ad_widget.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({super.key});
@@ -72,11 +73,12 @@ class StartPage extends StatelessWidget {
                     ),
                     const Spacer(),
 
-                    // Buttons
+                    // Buttons and banner
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 32.0),
                       child: Column(
                         children: [
+                          // Daily
                           SizedBox(
                             width: double.infinity,
                             child: ElevatedButton(
@@ -86,13 +88,16 @@ class StartPage extends StatelessWidget {
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 16),
                               ),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
+                              onPressed: () async {
+                                context.read<GameBloc>().add(
+                                      const GameEvent.loadGame(isDaily: true),
+                                    );
+                                await Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute<void>(
                                     builder: (_) =>
                                         const GamePage(isDailyMode: true),
                                   ),
+                                  (route) => false,
                                 );
                               },
                               child: Text(
@@ -102,6 +107,8 @@ class StartPage extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 16),
+
+                          // Levels
                           SizedBox(
                             width: double.infinity,
                             child: ElevatedButton(
@@ -111,12 +118,16 @@ class StartPage extends StatelessWidget {
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 16),
                               ),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => const LevelsPage(),
+                              onPressed: () async {
+                                context.read<GameBloc>().add(
+                                      const GameEvent.loadGame(isDaily: false),
+                                    );
+                                await Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute<void>(
+                                    builder: (_) =>
+                                        const GamePage(isDailyMode: false),
                                   ),
+                                  (route) => false,
                                 );
                               },
                               child: Text(
@@ -126,6 +137,8 @@ class StartPage extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 16),
+
+                          // How to Play
                           SizedBox(
                             width: double.infinity,
                             child: ElevatedButton(
@@ -149,6 +162,12 @@ class StartPage extends StatelessWidget {
                               ),
                             ),
                           ),
+
+                          const SizedBox(height: 16),
+
+                          // Banner ad below How to Play button
+                          const BannerAdWidget(),
+
                           const SizedBox(height: 32),
                         ],
                       ),

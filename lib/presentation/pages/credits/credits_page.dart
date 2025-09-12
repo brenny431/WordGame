@@ -17,12 +17,12 @@ class CreditsPage extends StatelessWidget {
 
   static const _gameDesign = [
     CreditPeople('Your_Name', 'https://google.com'),
-    CreditPeople('Your_Sentence', 'www.google.com'),
+    CreditPeople('Your_Sentence', 'https://www.google.com'),
   ];
 
   static const _dictionary = [
     CreditPeople('Your_Name', 'https://google.com'),
-    CreditPeople('Your_Sentence', 'www.google.com'),
+    CreditPeople('Your_Sentence', 'https://www.google.com'),
   ];
 
   @override
@@ -49,9 +49,12 @@ class CreditsPage extends StatelessWidget {
                   ),
                   const Spacer(),
                   Link(
-                    uri: Uri.parse(
-                      'mailto:$email?'
-                      '${context.r.message_new_word}',
+                    uri: Uri(
+                      scheme: 'mailto',
+                      path: email,
+                      queryParameters: {
+                        'subject': context.r.message_new_word,
+                      },
                     ),
                     builder: (context, followLink) => MouseRegion(
                       cursor: SystemMouseCursors.click,
@@ -139,8 +142,9 @@ class _CreditNameText extends StatelessWidget {
             behavior: HitTestBehavior.opaque,
             child: Text(
               text,
-              style: context.theme.tm
-                  .copyWith(decoration: TextDecoration.underline),
+              style: context.theme.tm.copyWith(
+                decoration: TextDecoration.underline,
+              ),
             ),
           ),
         ),
