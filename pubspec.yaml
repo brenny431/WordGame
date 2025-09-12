@@ -52,7 +52,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  carapacik_lints:
+  carapacik_lints: ^1.0.0
   flutter_native_splash: ^2.3.2
   freezed: ^2.4.3
   icons_launcher: ^2.1.4

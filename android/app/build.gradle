@@ -2,7 +2,7 @@ plugins {
     id "com.android.application"
     id "org.jetbrains.kotlin.android"
     id "dev.flutter.flutter-gradle-plugin"
-    id "com.google.gms.google-services" // ✅ required for Firebase/AdMob
+    id "com.google.gms.google-services" // required for Firebase/AdMob
 }
 
 def localProperties = new Properties()
@@ -13,15 +13,8 @@ if (localPropertiesFile.exists()) {
     }
 }
 
-def flutterVersionCode = localProperties.getProperty("flutter.versionCode")
-if (flutterVersionCode == null) {
-    flutterVersionCode = "1"
-}
-
-def flutterVersionName = localProperties.getProperty("flutter.versionName")
-if (flutterVersionName == null) {
-    flutterVersionName = "1.0"
-}
+def flutterVersionCode = localProperties.getProperty("flutter.versionCode") ?: "1"
+def flutterVersionName = localProperties.getProperty("flutter.versionName") ?: "1.0"
 
 android {
     namespace "com.example.wordspro"
@@ -51,8 +44,7 @@ android {
 
     buildTypes {
         release {
-            // TODO: Replace with a real signing config for Play Store releases
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.debug // replace with real signing config for Play Store
         }
     }
 }
@@ -62,6 +54,6 @@ flutter {
 }
 
 dependencies {
-    implementation platform("com.google.firebase:firebase-bom:33.1.2") // ✅ keeps Firebase/Ads in sync
-    implementation "com.google.android.gms:play-services-ads:23.1.0"  // ✅ AdMob SDK
+    implementation platform("com.google.firebase:firebase-bom:33.1.2")
+    implementation "com.google.android.gms:play-services-ads:23.1.0"
 }
