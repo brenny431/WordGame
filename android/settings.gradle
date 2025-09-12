@@ -6,7 +6,4 @@ pluginManagement {
     }
 }
 
-def flutterSdkPath = new File(rootDir, '../..').absolutePath
-includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
-
 include ":app"
