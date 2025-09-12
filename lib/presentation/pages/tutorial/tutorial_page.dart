@@ -18,73 +18,76 @@ class TutorialPage extends StatelessWidget {
           body: ConstraintScreen(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    context.r.tutorial_text,
-                    style: context.theme.bl,
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 16),
-                  _SpotWord(
-                    typeIndex: 0,
-                    letterIndex: 0,
-                    letter: context.r.the_letter,
-                    spot: context.r.letter_correct_spot,
-                  ),
-                  const SizedBox(height: 16),
-                  _SpotWord(
-                    typeIndex: 1,
-                    letterIndex: 2,
-                    letter: context.r.the_letter,
-                    spot: context.r.letter_wrong_spot,
-                  ),
-                  const SizedBox(height: 16),
-                  _SpotWord(
-                    typeIndex: 2,
-                    letterIndex: 4,
-                    letter: context.r.the_letters,
-                    spot: context.r.letter_not_in_word,
-                  ),
-                  const Spacer(),
-                  ElevatedButton(
-                    onPressed: () async {
-                      await Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute<void>(
-                          builder: (context) => const GamePage(),
-                        ),
-                        (route) => false,
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: context.dynamicColor(
-                        light: AppColors.greyLight,
-                        dark: AppColors.greyDark,
-                      ),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(height: 20),
+                    Text(
+                      context.r.tutorial_text,
+                      style: context.theme.bl,
+                      textAlign: TextAlign.center,
                     ),
-                    child: Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(text: context.r.start),
-                          WidgetSpan(
-                            alignment: PlaceholderAlignment.middle,
-                            baseline: TextBaseline.alphabetic,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 6),
-                              child: Icon(
-                                Icons.adaptive.arrow_forward,
-                                color: Colors.white,
+                    const SizedBox(height: 16),
+                    _SpotWord(
+                      typeIndex: 0,
+                      letterIndex: 0,
+                      letter: context.r.the_letter,
+                      spot: context.r.letter_correct_spot,
+                    ),
+                    const SizedBox(height: 16),
+                    _SpotWord(
+                      typeIndex: 1,
+                      letterIndex: 2,
+                      letter: context.r.the_letter,
+                      spot: context.r.letter_wrong_spot,
+                    ),
+                    const SizedBox(height: 16),
+                    _SpotWord(
+                      typeIndex: 2,
+                      letterIndex: 4,
+                      letter: context.r.the_letters,
+                      spot: context.r.letter_not_in_word,
+                    ),
+                    const SizedBox(height: 24),
+                    ElevatedButton(
+                      onPressed: () async {
+                        await Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute<void>(
+                            builder: (context) => const GamePage(),
+                          ),
+                          (route) => false,
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: context.dynamicColor(
+                          light: AppColors.greyLight,
+                          dark: AppColors.greyDark,
+                        ),
+                      ),
+                      child: Text.rich(
+                        TextSpan(
+                          children: [
+                            TextSpan(text: context.r.start),
+                            WidgetSpan(
+                              alignment: PlaceholderAlignment.middle,
+                              baseline: TextBaseline.alphabetic,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 6),
+                                child: Icon(
+                                  Icons.adaptive.arrow_forward,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                        style: context.theme.blb.copyWith(color: Colors.white),
                       ),
-                      style: context.theme.blb.copyWith(color: Colors.white),
                     ),
-                  ),
-                  const SizedBox(height: 40),
-                ],
+                    const SizedBox(height: 40),
+                  ],
+                ),
               ),
             ),
           ),
@@ -98,7 +101,6 @@ class _SpotWord extends StatelessWidget {
     required this.letterIndex,
     required this.letter,
     required this.spot,
-    // ignore: unused_element
     super.key,
   });
 

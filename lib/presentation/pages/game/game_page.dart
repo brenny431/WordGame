@@ -11,8 +11,10 @@ import 'package:wordspro/data/repositories.dart';
 import 'package:wordspro/presentation/pages/game/widgets/keyboard_by_language.dart';
 import 'package:wordspro/presentation/pages/game/widgets/word_grid.dart';
 import 'package:wordspro/presentation/pages/levels/levels_page.dart';
+import 'package:wordspro/presentation/pages/start/start_page.dart';
 import 'package:wordspro/presentation/pages/statistic/statistic_page.dart';
 import 'package:wordspro/presentation/widgets/widgets.dart';
+import 'package:wordspro/widgets/banner_ad_widget.dart';
 import 'package:wordspro/resources/resources.dart';
 import 'package:wordspro/utils/utils.dart';
 
@@ -82,14 +84,24 @@ class _GamePageState extends State<GamePage> {
             }
           },
           child: Scaffold(
-            drawer: const CustomDrawer(),
             appBar: CustomAppBar(
-              key: UniqueKey(), // optional key added
+              key: UniqueKey(), // non-const key is fine
               title: widget.isDailyMode
                   ? context.r.daily
                   : context.r.level_number(
                       context.read<GameBloc>().levelNumber,
                     ),
+              leading: IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute<void>(
+                      builder: (context) => const StartPage(),
+                    ),
+                    (route) => false,
+                  );
+                },
+              ),
               actions: [
                 if (widget.isDailyMode)
                   IconButton(
@@ -105,7 +117,7 @@ class _GamePageState extends State<GamePage> {
                   ),
               ],
             ),
-            body: _GameBody(key: UniqueKey()), // added key, removed const
+            body: _GameBody(key: UniqueKey()), // non-const key is fine
           ),
         ),
       );
@@ -159,6 +171,10 @@ class _GameBody extends StatelessWidget {
             SizedBox(height: 8),
             WordGrid(),
             Spacer(),
+
+            // Banner ad above the keyboard
+            BannerAdWidget(),
+
             KeyboardByLanguage(),
             SizedBox(height: 8),
           ],
