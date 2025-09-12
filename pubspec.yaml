@@ -28,18 +28,18 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  bloc: ^8.1.2
+  bloc: ^9.0.0
   collection: any
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.3
+  flutter_bloc: ^9.1.1
   flutter_localizations:
     sdk: flutter
   flutter_svg: ^2.0.7
   freezed_annotation: ^2.4.1
   google_fonts: ^6.1.0
   intl: any
-  json_annotation: ^4.8.1
+  json_annotation: ^4.9.0
   share_plus: ^7.1.0
   shared_preferences: ^2.2.1
   url_launcher: ^6.1.14
@@ -52,7 +52,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  carapacik_lints:
+  carapacik_lints: ^1.0.0
   flutter_native_splash: ^2.3.2
   freezed: ^2.4.3
   icons_launcher: ^2.1.4

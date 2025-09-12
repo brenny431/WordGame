@@ -1,7 +1,23 @@
-plugins {
-    id "com.android.application" version "8.3.0" apply false   // match settings.gradle
-    id "org.jetbrains.kotlin.android" version "1.9.22" apply false
-    id "com.google.gms.google-services" version "4.3.15" apply false // updated Google services
+buildscript {
+    // We are removing the explicit kotlin_version as it's often managed by the plugin itself.
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        // Updated to a more recent version of the Android Gradle Plugin.
+        classpath 'com.android.tools.build:gradle:8.3.0'
+        
+        // START: FlutterFire Configuration
+        // Updated to a more recent version of the Google Services plugin.
+        classpath 'com.google.gms:google-services:4.4.2'
+        // END: FlutterFire Configuration
+        
+        // The kotlin-gradle-plugin version is often managed by the Android Gradle Plugin now.
+        // If an explicit version is needed, it should be a recent one.
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22"
+    }
 }
 
 allprojects {
@@ -11,11 +27,12 @@ allprojects {
     }
 }
 
-rootProject.buildDir = "../build"
-
+rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
-    project.evaluationDependsOn(":app")
+}
+subprojects {
+    project.evaluationDependsOn(':app')
 }
 
 tasks.register("clean", Delete) {
