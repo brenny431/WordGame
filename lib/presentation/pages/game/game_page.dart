@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,6 +17,7 @@ import 'package:wordspro/presentation/widgets/widgets.dart';
 import 'package:wordspro/widgets/banner_ad_widget.dart';
 import 'package:wordspro/resources/resources.dart';
 import 'package:wordspro/utils/utils.dart';
+import 'package:wordspro/services/ad_service.dart'; // ⬅️ import AdService
 
 class GamePage extends StatefulWidget {
   const GamePage({this.isDailyMode = true, super.key});
@@ -76,6 +77,14 @@ class _GamePageState extends State<GamePage> {
             );
 
             if (gameResult != null) {
+              // ⬇️ Show interstitial ad after level is complete
+              if (!kIsWeb) {
+                AdService.instance.showInterstitialAd();
+              } else {
+                debugPrint("Skipping interstitial ad on web.");
+              }
+
+              // Then show the result dialog
               showGameResultDialog(
                 context,
                 result: gameResult,
@@ -85,7 +94,7 @@ class _GamePageState extends State<GamePage> {
           },
           child: Scaffold(
             appBar: CustomAppBar(
-              key: UniqueKey(), // non-const key is fine
+              key: UniqueKey(),
               title: widget.isDailyMode
                   ? context.r.daily
                   : context.r.level_number(
@@ -117,7 +126,7 @@ class _GamePageState extends State<GamePage> {
                   ),
               ],
             ),
-            body: _GameBody(key: UniqueKey()), // non-const key is fine
+            body: _GameBody(key: UniqueKey()),
           ),
         ),
       );
